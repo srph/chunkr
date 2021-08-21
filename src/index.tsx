@@ -1,5 +1,5 @@
 import 'sanitize.css'
-import React, { useState } from 'react'
+import React, { useState, useMemo } from 'react'
 import ReactDOM from 'react-dom'
 import styled, { createGlobalStyle } from 'styled-components'
 import chunkp from 'chunk-pattern'
@@ -11,27 +11,29 @@ type Formatter = (value: string) => string
 
 const formatters: Record<Format, Formatter> = {
   phone_number: (value) => {
-    const string = value.replace('63', '0').replace('+', '')
+    const string = value.replace('63', '0').replace('+', '').replace(/\s/g, '')
     const chunked = chunkp(string.split(''), [4, 3, 4])
     return chunked.map((group: string[]) => group.join('')).join(' ')
   },
   group_by_threes: (value) => {
-    const chunked = chunkp(value.split(''), [3])
+    const string = value.replace(/\s/g, '')
+    const chunked = chunkp(string.split(''), [3])
     return chunked.map((group: string[]) => group.join('')).join(' ')
   },
   group_by_fours: (value) => {
-    const chunked = chunkp(value.split(''), [4])
+    const string = value.replace(/\s/g, '')
+    const chunked = chunkp(string.split(''), [4])
     return chunked.map((group: string[]) => group.join('')).join(' ')
   }
 }
+
+console.log(formatters.group_by_fours('109427876763'))
 
 const App: React.FC = () => {
   const [input, setInput] = useState('')
   const [format, setFormat] = useState<Format>('phone_number')
 
-  const content = input
-    ? formatters[format](input)
-    : '-'
+  const content = input ? formatters[format](input) : ''
 
   return (
     <>
@@ -54,7 +56,7 @@ const App: React.FC = () => {
           </Controls>
 
           <InangNumberTo>
-            {content}
+            {content || <span>&mdash;</span>}
           </InangNumberTo>
         </Content>
       </Container>
