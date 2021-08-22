@@ -124,7 +124,7 @@ const Input = styled.input`
   }
 
   &:focus {
-    background: ${theme.colors.neutral700};
+    background: ${theme.colors.neutral800};
   }
 `
 

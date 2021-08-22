@@ -4,7 +4,7 @@ export const theme = {
     neutral900: '#111827',
     neutral800: '#1F2937',
     neutral700: '#33445A',
-    neutral600: '##5b799e',
+    neutral300: '#bcd0e8',
     purple: '#cf4cfe'
   },
   fontSizes: {
