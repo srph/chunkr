@@ -1,5 +1,5 @@
 import 'sanitize.css'
-import React, { useState, useMemo } from 'react'
+import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
 import styled, { createGlobalStyle } from 'styled-components'
 import chunkp from 'chunk-pattern'
