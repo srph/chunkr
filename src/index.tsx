@@ -116,6 +116,7 @@ const Input = styled.input`
   font-weight: 700;
   text-transform: uppercase;
   border: 1px solid ${theme.colors.neutral800};
+  outline: 0;
 
   &:focus {
     background: ${theme.colors.neutral700};
@@ -132,6 +133,7 @@ const Select = styled.select`
   font-weight: 700;
   text-transform: uppercase;
   border: 1px solid ${theme.colors.neutral800};
+  outline: 0;
 
   &:focus {
     background: ${theme.colors.neutral700};
