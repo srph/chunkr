@@ -6,7 +6,7 @@ export const theme = {
     neutral700: '#33445A',
     neutral300: '#bcd0e8',
     purple: '#cf4cfe',
-    teal: '##00b9b9'
+    teal: '#00b9b9'
   },
   fontSizes: {
     sm: 10,
