@@ -19,3 +19,7 @@ To setup on Netlify
 ```bash
 npm run build
 ```
+
+## Attribution
+
+Meta Thumbnail looks fresh thanks to [Pranay Agarwal](https://pranayag.github.io/)'s [Doodles](https://www.figma.com/community/file/973635124805094790) pattern on Figma
