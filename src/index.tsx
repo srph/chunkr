@@ -102,7 +102,7 @@ const ControlsField = styled.div`
   width: 320px;
 
   &:not(:last-child) {
-    margin-right: 32px;
+    margin-right: 16px;
   }
 `
 
