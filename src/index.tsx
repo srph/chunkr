@@ -27,11 +27,17 @@ const formatters: Record<Format, Formatter> = {
   }
 }
 
+const defaultContent: Record<Format, string[]> = {
+  phone_number: ['0000', '000', '0000'],
+  group_by_threes: ['0000', '0000', '0000'],
+  group_by_fours: ['000', '000', '000', '000']
+}
+
 const App: React.FC = () => {
   const [input, setInput] = useState('')
   const [format, setFormat] = useState<Format>('phone_number')
 
-  const content = input ? formatters[format](input) : []
+  const content = input ? formatters[format](input) : defaultContent[format]
 
   return (
     <>
@@ -61,17 +67,13 @@ const App: React.FC = () => {
             </ControlsField>
           </Controls>
 
-          <InangNumberTo>
-            {content.length ? (
-              content.map((group, i) => (
-                <Colorify index={i} key={i}>
-                  {group} &nbsp;
-                </Colorify>
-              ))
-            ) : (
-              <EmptyInput>&mdash;</EmptyInput>
-            )}
-          </InangNumberTo>
+          <SuperNumber>
+            {content.map((group, i) => (
+              <Colorify index={i} key={i}>
+                {group} &nbsp;
+              </Colorify>
+            ))}
+          </SuperNumber>
         </Content>
       </Container>
     </>
@@ -159,15 +161,11 @@ const Select = styled.select`
   }
 `
 
-const InangNumberTo = styled.h1`
+const SuperNumber = styled.h1`
   margin: 0;
   font-size: 144px;
   font-weight: bold;
   width: 100%;
-  color: ${theme.colors.purple};
-`
-
-const EmptyInput = styled.span`
   color: ${theme.colors.purple};
 `
 
