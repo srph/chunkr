@@ -118,6 +118,10 @@ const Input = styled.input`
   border: 1px solid ${theme.colors.neutral800};
   outline: 0;
 
+  &::placeholder {
+    color: ${theme.colors.neutral300};
+  }
+
   &:focus {
     background: ${theme.colors.neutral700};
   }
