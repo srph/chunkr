@@ -51,7 +51,9 @@ const App: React.FC = () => {
             </ControlsField>
 
             <ControlsField>
-              <Select value={format} onChange={(evt: React.ChangeEvent<HTMLSelectElement) => setFormat(evt.target.value as Format)}>
+              <Select
+                value={format}
+                onChange={(evt: React.ChangeEvent<HTMLSelectElement>) => setFormat(evt.target.value as Format)}>
                 <option value="phone_number">Phone Number</option>
                 <option value="group_by_threes">Group By Threes</option>
                 <option value="group_by_fours">Group By Fours</option>
@@ -63,7 +65,7 @@ const App: React.FC = () => {
             {content.length ? (
               content.map((group, i) => (
                 <Colorify index={i} key={i}>
-                  {group}
+                  {group} &nbsp;
                 </Colorify>
               ))
             ) : (
