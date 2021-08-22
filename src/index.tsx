@@ -27,8 +27,6 @@ const formatters: Record<Format, Formatter> = {
   }
 }
 
-console.log(formatters.group_by_fours('109427876763'))
-
 const App: React.FC = () => {
   const [input, setInput] = useState('')
   const [format, setFormat] = useState<Format>('phone_number')
@@ -43,11 +41,17 @@ const App: React.FC = () => {
         <Content>
           <Controls>
             <ControlsField>
-              <Input type="text" placeholder="Enter number..." value={input} onChange={evt => setInput(evt.target.value)} />
+              <Input
+                type="text"
+                placeholder="Enter number..."
+                value={input}
+                onChange={(evt) => setInput(evt.target.value)}
+                autoFocus
+              />
             </ControlsField>
 
             <ControlsField>
-              <Select value={format} onChange={evt => setFormat(evt.target.value)}>
+              <Select value={format} onChange={(evt) => setFormat(evt.target.value)}>
                 <option value="phone_number">Phone Number</option>
                 <option value="group_by_threes">Group By Threes</option>
                 <option value="group_by_fours">Group By Fours</option>
@@ -55,9 +59,7 @@ const App: React.FC = () => {
             </ControlsField>
           </Controls>
 
-          <InangNumberTo>
-            {content || <span>&mdash;</span>}
-          </InangNumberTo>
+          <InangNumberTo>{content || <span>&mdash;</span>}</InangNumberTo>
         </Content>
       </Container>
     </>
@@ -81,7 +83,7 @@ const Container = styled.div`
   padding: 32px;
 `
 
-const Content = styled.div` 
+const Content = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -137,7 +139,7 @@ const Select = styled.select`
 `
 
 const InangNumberTo = styled.h1`
-margin: 0;
+  margin: 0;
   font-size: 144px;
   font-weight: bold;
   width: 100%;
