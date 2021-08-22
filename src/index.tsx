@@ -7,23 +7,23 @@ import { theme } from './theme'
 
 type Format = 'phone_number' | 'group_by_threes' | 'group_by_fours'
 
-type Formatter = (value: string) => string
+type Formatter = (value: string) => string[]
 
 const formatters: Record<Format, Formatter> = {
   phone_number: (value) => {
     const string = value.replace('63', '0').replace('+', '').replace(/\s/g, '')
     const chunked = chunkp(string.split(''), [4, 3, 4])
-    return chunked.map((group: string[]) => group.join('')).join(' ')
+    return chunked.map((group: string[]) => group.join(''))
   },
   group_by_threes: (value) => {
     const string = value.replace(/\s/g, '')
     const chunked = chunkp(string.split(''), [3])
-    return chunked.map((group: string[]) => group.join('')).join(' ')
+    return chunked.map((group: string[]) => group.join(''))
   },
   group_by_fours: (value) => {
     const string = value.replace(/\s/g, '')
     const chunked = chunkp(string.split(''), [4])
-    return chunked.map((group: string[]) => group.join('')).join(' ')
+    return chunked.map((group: string[]) => group.join(''))
   }
 }
 
@@ -31,7 +31,7 @@ const App: React.FC = () => {
   const [input, setInput] = useState('')
   const [format, setFormat] = useState<Format>('phone_number')
 
-  const content = input ? formatters[format](input) : ''
+  const content = input ? formatters[format](input) : []
 
   return (
     <>
@@ -51,7 +51,7 @@ const App: React.FC = () => {
             </ControlsField>
 
             <ControlsField>
-              <Select value={format} onChange={(evt) => setFormat(evt.target.value)}>
+              <Select value={format} onChange={(evt: React.ChangeEvent<HTMLSelectElement) => setFormat(evt.target.value as Format)}>
                 <option value="phone_number">Phone Number</option>
                 <option value="group_by_threes">Group By Threes</option>
                 <option value="group_by_fours">Group By Fours</option>
@@ -59,7 +59,17 @@ const App: React.FC = () => {
             </ControlsField>
           </Controls>
 
-          <InangNumberTo>{content || <span>&mdash;</span>}</InangNumberTo>
+          <InangNumberTo>
+            {content.length ? (
+              content.map((group, i) => (
+                <Colorify index={i} key={i}>
+                  {group}
+                </Colorify>
+              ))
+            ) : (
+              <EmptyInput>&mdash;</EmptyInput>
+            )}
+          </InangNumberTo>
         </Content>
       </Container>
     </>
@@ -152,6 +162,14 @@ const InangNumberTo = styled.h1`
   font-weight: bold;
   width: 100%;
   color: ${theme.colors.purple};
+`
+
+const EmptyInput = styled.span`
+  color: ${theme.colors.purple};
+`
+
+const Colorify = styled.span<{ index: number }>`
+  color: ${(props) => (props.index % 2 === 0 ? theme.colors.purple : theme.colors.teal)};
 `
 
 ReactDOM.render(<App />, document.getElementById('root'))
