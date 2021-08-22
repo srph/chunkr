@@ -101,7 +101,8 @@ const Content = styled.div`
   justify-content: center;
   max-width: 1400px;
   margin: 0 auto;
-  height: 720px;
+  min-height: 720px;
+  height: 100vh;
 `
 
 const Controls = styled.div`
