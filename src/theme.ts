@@ -9,7 +9,7 @@ export const theme = {
     teal: '#00b9b9'
   },
   fontSizes: {
-    sm: 10,
+    sm: 12,
     base: 16
   },
   fontFamily: {

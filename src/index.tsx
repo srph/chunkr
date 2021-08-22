@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom'
 import styled, { createGlobalStyle } from 'styled-components'
 import chunkp from 'chunk-pattern'
 import { theme } from './theme'
+import logo from 'url:./assets/logo.svg'
 
 type Format = 'phone_number' | 'group_by_threes' | 'group_by_fours'
 
@@ -43,39 +44,61 @@ const App: React.FC = () => {
     <>
       <GlobalStyle />
 
-      <Container>
-        <Content>
-          <Controls>
-            <ControlsField>
-              <Input
-                type="text"
-                placeholder="Enter number..."
-                value={input}
-                onChange={(evt) => setInput(evt.target.value)}
-                autoFocus
-              />
-            </ControlsField>
+      <Layout>
+        <LayoutSection>
+          <Container>
+            <img src={logo} />
+          </Container>
+        </LayoutSection>
 
-            <ControlsField>
-              <Select
-                value={format}
-                onChange={(evt: React.ChangeEvent<HTMLSelectElement>) => setFormat(evt.target.value as Format)}>
-                <option value="phone_number">Phone Number</option>
-                <option value="group_by_threes">Group By Threes</option>
-                <option value="group_by_fours">Group By Fours</option>
-              </Select>
-            </ControlsField>
-          </Controls>
+        <MainContent>
+          <Container>
+            <Content>
+              <Controls>
+                <ControlsField>
+                  <Input
+                    type="text"
+                    placeholder="Enter number..."
+                    value={input}
+                    onChange={(evt) => setInput(evt.target.value)}
+                    autoFocus
+                  />
+                </ControlsField>
 
-          <SuperNumber>
-            {content.map((group, i) => (
-              <Colorify index={i} key={i}>
-                {group} &nbsp;
-              </Colorify>
-            ))}
-          </SuperNumber>
-        </Content>
-      </Container>
+                <ControlsField>
+                  <Select
+                    value={format}
+                    onChange={(evt: React.ChangeEvent<HTMLSelectElement>) => setFormat(evt.target.value as Format)}>
+                    <option value="phone_number">Phone Number</option>
+                    <option value="group_by_threes">Group By Threes</option>
+                    <option value="group_by_fours">Group By Fours</option>
+                  </Select>
+                </ControlsField>
+              </Controls>
+
+              <SuperNumber>
+                {content.map((group, i) => (
+                  <Colorify index={i} key={i}>
+                    {group} &nbsp;
+                  </Colorify>
+                ))}
+              </SuperNumber>
+            </Content>
+          </Container>
+        </MainContent>
+
+        <LayoutSection>
+          <Container>
+            <Footer>
+              <FooterLink href="https://github.com/srph/chunkr">GitHub</FooterLink>
+
+              <FooterLink href="https://kierb.com" target="_blank">
+                Kier Borromeo
+              </FooterLink>
+            </Footer>
+          </Container>
+        </LayoutSection>
+      </Layout>
     </>
   )
 }
@@ -93,18 +116,46 @@ const GlobalStyle = createGlobalStyle`
   }
 `
 
+const Layout = styled.div`
+  display: flex;
+  flex-direction: column;
+  min-height: 720px;
+  height: 100vh;
+`
+
+const LayoutSection = styled.div`
+  flex-shrink: 0;
+`
+
+const Footer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`
+
+const FooterLink = styled.a`
+  text-transform: uppercase;
+  font-size: ${theme.fontSizes.sm}px;
+  font-weight: 700;
+  color: ${theme.colors.neutral300};
+  opacity: 1;
+  text-decoration: none;
+`
+
 const Container = styled.div`
   padding: 32px;
 `
 
-const Content = styled.div`
+const MainContent = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  height: 100%;
+`
+
+const Content = styled.div`
   max-width: 1400px;
   margin: 0 auto;
-  min-height: 720px;
-  height: 100vh;
 `
 
 const Controls = styled.div`
