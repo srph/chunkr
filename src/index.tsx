@@ -30,8 +30,8 @@ const formatters: Record<Format, Formatter> = {
 
 const defaultContent: Record<Format, string[]> = {
   phone_number: ['0000', '000', '0000'],
-  group_by_threes: ['0000', '0000', '0000'],
-  group_by_fours: ['000', '000', '000', '000']
+  group_by_threes: ['000', '000', '000', '000'],
+  group_by_fours: ['0000', '0000', '0000']
 }
 
 const App: React.FC = () => {
