@@ -1,3 +1,5 @@
+![Thumbnail](./src/assets/cover.png)
+
 ## chunkr
 
 Weekend project to make long numbers eye scannable. [Use the app](https://chunkr.kierb.com/)
